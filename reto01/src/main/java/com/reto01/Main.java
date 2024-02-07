@@ -65,7 +65,7 @@ public class Main {
         list.add(item2); 
         list.add(item3); 
         list.add(item4); 
-        list.add(item5); 
+        list.add(item5);
         
         //1. Abrir el navegador y redireccionar a la página Demo Blaze.
         //Definir driver + abrir sitio + maximizar navegador  
@@ -90,19 +90,19 @@ public class Main {
             
             for(Articulo itemArt:list){ //Busca el artículo conforme a la lista de elementos
                 if(itemArt.categoria.equals(grupoMenu.get(i).getText())){//Valida categoria (Lista vs Elemento para valor de Item de Menú)
-                    productoSeleccionado=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+itemArt.articulo+"']")));//Localiza Producto
-                    System.out.println("Producto:   "+productoSeleccionado.getText());
-                    productoSeleccionado.click();//Accede al detalle del Producto
-                    
-                    precio = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("price-container")));//Localiza en el detalle el precio
-                    
-                    //4. Realizar un punto de control por cada uno de los productos involucrados.
-                    if(precio.getText().contains(itemArt.valor)){//Punto de verificación (Lista vs Elemento Precio)
-                        System.out.println("Precio:     "+precio.getText());
-                        driver.navigate().back();//Retorno de navegación
-                    }else{
-                        System.out.println("ARTICULO NO ENCONTRADO");//Mensaje cuando no encuentra el articulo
-                    }
+                        productoSeleccionado=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+itemArt.articulo+"']")));//Localiza Producto
+                        System.out.println("Producto:   "+productoSeleccionado.getText());
+                        productoSeleccionado.click();//Accede al detalle del Producto
+                        
+                        precio = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("price-container")));//Localiza en el detalle el precio
+                        
+                        //4. Realizar un punto de control por cada uno de los productos involucrados.
+                        if(precio.getText().contains(itemArt.valor)){//Punto de verificación (Lista vs Elemento Precio)
+                            System.out.println("Precio:     "+precio.getText());
+                            driver.navigate().back();//Retorno de navegación
+                        }else{
+                            System.out.println("ARTICULO NO ENCONTRADO");//Mensaje cuando no encuentra el articulo
+                        }
                 }else{
                     continue;
                 }
