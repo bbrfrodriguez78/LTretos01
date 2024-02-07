@@ -12,6 +12,13 @@
         Dell i7 8gb
     -Monitors
         ASUS Full HD
+
+    Tareas:
+        1. Abrir el navegador y redireccionar a la página Demo Blaze.
+        2. Localizar cada uno de las Cards de los productos.
+        3. Navegar entre cada una de las categorías.
+        4. Realizar un punto de control por cada uno de los productos involucrados.
+        5. Cerrar el navegador.
  */
 package com.reto01;
 import java.time.Duration;
@@ -60,6 +67,7 @@ public class Main {
         list.add(item4); 
         list.add(item5); 
         
+        //1. Abrir el navegador y redireccionar a la página Demo Blaze.
         //Definir driver + abrir sitio + maximizar navegador  
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -72,6 +80,8 @@ public class Main {
         WebElement productoSeleccionado = null;  
         WebElement precio = null;
         
+        //2. Localizar cada uno de las Cards de los productos.
+        //3. Navegar entre cada una de las categorías.
         for (int i = 0; i < grupoMenu.size(); i++) {//Recorre el menú
             categoriaItemMenu = driver.findElement(By.xpath("//a[text()='"+grupoMenu.get(i).getText()+"']"));
             scrollIntoView(driver, categoriaItemMenu); //Posicionamiento con scroll para encontrar el elemento visualmente
@@ -85,6 +95,8 @@ public class Main {
                     productoSeleccionado.click();//Accede al detalle del Producto
                     
                     precio = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("price-container")));//Localiza en el detalle el precio
+                    
+                    //4. Realizar un punto de control por cada uno de los productos involucrados.
                     if(precio.getText().contains(itemArt.valor)){//Punto de verificación (Lista vs Elemento Precio)
                         System.out.println("Precio:     "+precio.getText());
                         driver.navigate().back();//Retorno de navegación
@@ -96,6 +108,7 @@ public class Main {
                 }
             }
         }
+        //5. Cerrar el navegador.
         driver.quit();
     }
 }
